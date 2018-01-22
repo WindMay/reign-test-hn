@@ -16,8 +16,8 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
   // Once connected update articles
-  const subscriber = cronJob.subscribe((tick) => {
-    console.log('Updating Articles', tick);
+  const subscriber = cronJob.subscribe(() => {
+    console.log('Updating Articles...');
     // Get latest nodejs related articles
     axios.get(`${API}/search_by_date?query=nodejs`).then(articles => {
       const data = articles.data;

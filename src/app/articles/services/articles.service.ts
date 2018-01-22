@@ -9,5 +9,4 @@ export class ArticlesService {
   getLatestArticles() {
     return this.http.get('/api/articles-latest').toPromise();
   }
-
 }

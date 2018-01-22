@@ -1,0 +1,42 @@
+:host {
+  margin: 0 2vw;
+  display: flex;
+  .list-group {
+    width: 100%;
+    .list-group-item {
+      padding: 1.2vw 2.0vw;
+      border: none;
+      border-bottom: 1px solid #cccccc;
+      margin-bottom: 1px;
+      background-color: #ffffff;
+      display: flex;
+      flex-flow: row;
+      justify-content: space-between;
+      cursor: pointer;
+      .first-section, .second-section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      i {
+        display: flex;
+      }
+      .title {
+        margin-right: 1.2vw;
+      }
+      .date {
+        margin-right: 2.2vw;
+      }
+      .title, .date {
+        color: #333;
+        font-size: 13pt;
+      }
+      .author {
+        color: #999;
+      }
+      &:hover {
+        background-color: #fafafa;
+      }
+    }
+  }
+}
