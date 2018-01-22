@@ -1,6 +1,7 @@
 // Configure Schema
 const mongoose = require('mongoose');
 const articleSchema  = mongoose.Schema({
+  deleted: Boolean,
   created_at: Date,
   title: String,
   url: String,

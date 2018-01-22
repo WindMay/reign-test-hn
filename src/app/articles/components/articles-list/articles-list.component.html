@@ -1,13 +1,14 @@
 <ul class="list-group">
-  <ng-template ngFor let-article [ngForOf]="articles">
-    <li class="list-group-item list-group-item-action" *ngIf="article.story_title || article.title">
+  <ng-template ngFor let-article [ngForOf]="articles" let-i="index">
+    <li class="list-group-item list-group-item-action"
+        *ngIf="(article.story_title || article.title) && (!article.deleted)">
       <div class="first-section">
         <span class="title"> {{article.story_title ?  article.story_title : article.title}} </span>
         <span class="author" *ngIf="article.author"> - {{article.author}} - </span>
       </div>
       <div class="second-section">
         <span class="date" *ngIf="article.created_at"> {{article.pretty_date}} </span>
-        <i class="fa fa-trash" aria-hidden="true"></i>
+        <i class="fa fa-trash" aria-hidden="true" (click)="deleteArticle(article.objectID, i)"></i>
       </div>
     </li>
   </ng-template>

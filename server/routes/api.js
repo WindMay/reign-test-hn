@@ -33,7 +33,7 @@ db.once('open', () => {
         });
       };
     }).catch(error => {
-      console.log('Couldnt get the articles update');
+      console.log('Couldnt get the articles update', error);
     });
   });
 });
@@ -48,7 +48,21 @@ router.get('/articles-latest', (req, res) => {
   Article.find().then( articles => {
     console.log('articles', articles);
     res.status(200).json(articles);
-  }).catch( err => res.status(500).send(erro));
+  }).catch( err => res.status(500).send(err));
+});
+
+// Delete article
+router.delete('/articles/:id',(req, res) => {
+  const article_id = req.params.id;
+  Article.findOneAndUpdate({objectID: article_id}, {deleted: true}, {upsert: true} ,(err, doc) => {
+    if (err) {
+      console.log("Something wrong when updating data!");
+      res.status(404).json({text: 'not found'});
+    }
+    console.log('deleted', article_id);
+    res.status(200).json(doc);
+  });
+
 });
 
 module.exports = router;

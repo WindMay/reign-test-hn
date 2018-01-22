@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ArticlesService} from '../../services/articles.service';
 import { isToday, isYesterday, format } from 'date-fns';
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-articles-list',
@@ -9,7 +10,7 @@ import { isToday, isYesterday, format } from 'date-fns';
 })
 export class ArticlesListComponent implements OnInit {
   public articles: Array<any>;
-  constructor(private articlesServices: ArticlesService) {}
+  constructor(private articlesServices: ArticlesService, private toastr: ToastrService) {}
 
   ngOnInit() {
     this.articlesServices.getLatestArticles().then( ok_resp => {
@@ -18,7 +19,10 @@ export class ArticlesListComponent implements OnInit {
         article.pretty_date = this.prettyDateFormat(article.created_at);
       });
       this.articles = art_resp;
-    }).catch( err => console.log('something went wrong...'));
+    }).catch( err => {
+      this.toastr.error('Something went wrong');
+      console.log('something went wrong...');
+    });
   }
 
   prettyDateFormat (date_in: string) {
@@ -30,5 +34,15 @@ export class ArticlesListComponent implements OnInit {
     } else {
       return format(date, 'MMM D');
     }
+  }
+
+  deleteArticle(article_id: any, index: number) {
+    this.articlesServices.deleteArticle(article_id).then( ok => {
+      this.articles.splice(index, 1);
+      this.toastr.success('Article Erased');
+    }).catch( err => {
+      this.toastr.error('Something went wrong');
+      console.log('something went wrong', err);
+    });
   }
 }

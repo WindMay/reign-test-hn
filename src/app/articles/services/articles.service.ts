@@ -9,4 +9,8 @@ export class ArticlesService {
   getLatestArticles() {
     return this.http.get('/api/articles-latest').toPromise();
   }
+
+  deleteArticle(article_id: any) {
+    return this.http.delete(`/api/articles/${article_id}`).toPromise();
+  }
 }
