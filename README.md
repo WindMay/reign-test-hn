@@ -1,7 +1,13 @@
 # ReignTestHn
 
+Reign design test
+
+## Development server
+
 1- Install angular-cli version 1.6.5.
 `npm install -g @angular/cli@1.6.5`
+
+and 
 
 install mongodb 
 `https://docs.mongodb.com/manual/installation/`
@@ -10,7 +16,6 @@ install mongodb
 
 3- run mongo at 'localhost:27017'
 
-## Development server
+4- run npm run build
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
