@@ -1,7 +1,7 @@
 doctype html
 ul(class="list-group")
   ng-template('ngFor' 'let-article' '[ngForOf]'="articles" 'let-i'="index")
-    ng-template('ngIf'="!article.deleted")
+    ng-template('[ngIf]'="!article.deleted")
       li(class="list-group-item list-group-item-action" '*ngIf'="article.story_title || article.title")
         div(class="first-section")
           span(class="title") {{article.story_title ?  article.story_title : article.title}}
